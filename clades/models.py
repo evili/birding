@@ -1,9 +1,17 @@
 from django.db import models
 
-class Kingdom(models.Model):
+class BaseName(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    notes = models.TextField(null=True, blank=True)
 
-class Phylum(models.Model):
-    name = models.CharField(max_length=255, unique=True)
+    class Meta:
+        abstract = True
+        ordering = ['name']
+
+
+class Kingdom(BaseName):
+    pass
+
+class Phylum(BaseName):
     kingdom = models.ForeignKey(Kingdom)
 
