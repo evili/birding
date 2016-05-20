@@ -12,7 +12,7 @@ coverage:
         stage: deploy
         script:
                 - pip install -U coverage
-                - coverage run  --branch --concurrency=thread --omit='.env/*',manage.py  manage.py test
+                - coverage run  --branch --concurrency=thread --omit='/usr/local/*','.env/*',manage.py  manage.py test
                 - coverage report
 
 
