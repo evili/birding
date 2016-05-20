@@ -5,27 +5,25 @@ from .models import Kingdom, Phylum
 _KINGDOM_NAME = 'Animalia'
 _PHYLUM_NAME = 'Chordata'
 
-class KingdomTest(TestCase):
-    def test_kingdom_name(self):
-        kingdom = Kingdom(name=_KINGDOM_NAME)
-        kingdom.save()
-        self.assertEqual(kingdom.name, _KINGDOM_NAME)
 
-class PhylumTest(TestCase):
+class CladesTest(TestCase):
 
     def setUp(self):
-        self.kingdom = Kingdom(name=_KINGDOM_NAME)
-        self.kingdom.save()
+        (self.kingdom, created) = Kingdom.objects.get_or_create(
+            name=_KINGDOM_NAME)
+        (self.phylum, created) = Phylum.objects.get_or_create(
+            name=_PHYLUM_NAME,
+            kingdom=self.kingdom)
 
+
+class KingdomTest(CladesTest):
+    def test_kingdom_name(self):
+        self.assertEqual(self.kingdom.name, _KINGDOM_NAME)
+
+class PhylumTest(CladesTest):
     def test_phylum_name(self):
-        phylum = Phylum(name=_PHYLUM_NAME, kingdom=self.kingdom)
-        phylum.save()
-        self.assertEqual(phylum.name, _PHYLUM_NAME)
+        self.assertEqual(self.phylum.name, _PHYLUM_NAME)
 
     def test_phylum_has_kingdom(self):
-        phylum = Phylum(name=_PHYLUM_NAME, kingdom=self.kingdom)
-        phylum.save()
-        # Retrieve object from DB
         phylum = Phylum.objects.get(name=_PHYLUM_NAME)
         self.assertEqual(phylum.kingdom, self.kingdom)
-
