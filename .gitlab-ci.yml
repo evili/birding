@@ -1,0 +1,11 @@
+image: docker.io/python:3-alpine
+
+before_script:
+        - pip install --upgrade pip
+        - pip install -r requirements.txt
+
+unittest:
+        script:
+                - python manage.py test
+
+
