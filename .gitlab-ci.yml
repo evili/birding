@@ -8,4 +8,11 @@ unittest:
         script:
                 - python manage.py test
 
+coverage:
+        stage: deploy
+        script:
+                - pip install -U coverage
+                - coverage run  --branch --concurrency=thread --omit='.env/*',manage.py  manage.py test
+                - coverage report
+
 
