@@ -21,6 +21,7 @@ class KingdomTest(CladesTest):
         self.assertEqual(self.kingdom.name, _KINGDOM_NAME)
     def test_kingdom_as_string(self):
         self.assertEqual(str(self.kingdom), _KINGDOM_NAME)
+        self.assertEqual(u'%s' % self.kingdom, _KINGDOM_NAME)
 
 class PhylumTest(CladesTest):
 
