@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load staticfiles i18n bootstrap3 %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block page_title %}{% include "page_title.html" %}{% endblock %}</title>
+  {% bootstrap_css %}{% block css %}{% endblock %}
+</head>
+<body>
+  <div class="container">
+    <h1>{% include "page_title.html" %}</h1>
+    {% bootstrap_messages %}
+    {% block content %}
+    {% endblock content %}
+  </div>
+  {% bootstrap_javascript jquery=1 %}{% block js %}{% endblock %}
+</body>
+</html>
