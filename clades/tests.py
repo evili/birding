@@ -17,3 +17,13 @@ class PhylumTest(TestCase):
         phylum.save()
         self.assertEqual(phylum.name, _PHYLUM_NAME)
 
+    def test_phylum_has_kingdom(self):
+        kingdom = Kingdom(name=_KINGDOM_NAME)
+        kingdom.save()
+        phylum = Phylum(name=_PHYLUM_NAME)
+        phylum.kingdom = kingdom
+        phylum.save()
+        # Retrieve object from DB
+        phylum = Phylum.objects.get(name=_PHYLUM_NAME)
+        self.assertEqual(phylum.kingdom, kingdom)
+

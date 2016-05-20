@@ -5,4 +5,5 @@ class Kingdom(models.Model):
 
 class Phylum(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    kingdom = models.ForeignKey(Kingdom)
 
