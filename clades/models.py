@@ -18,3 +18,6 @@ class Kingdom(BaseName):
 class Phylum(BaseName):
     kingdom = models.ForeignKey(Kingdom)
 
+class Classe(BaseName):
+    phylum = models.ForeignKey(Phylum)
+
