@@ -21,3 +21,11 @@ class Phylum(BaseName):
 class Classe(BaseName):
     phylum = models.ForeignKey(Phylum)
 
+class Ordo(BaseName):
+    classe = models.ForeignKey(Classe)
+
+class Family(BaseName):
+    ordo = models.ForeignKey(Ordo)
+
+class Genus(BaseName):
+    family = models.ForeignKey(Family)
