@@ -1,11 +1,11 @@
 from django.test import TestCase
 
-from .models import Kingdom, Phylum, Classe
+from .models import Kingdom, Phylum, Classe, Family
 
 _KINGDOM_NAME = u'Animalia'
 _PHYLUM_NAME = u'Chordata'
 _CLASSE_NAME = u'Aves'
-
+_FAMILY_NAME = u'Passeriformes'
 
 class CladesTest(TestCase):
 
@@ -17,8 +17,10 @@ class CladesTest(TestCase):
             kingdom=self.kingdom)
         (self.classe, created) = Classe.objects.get_or_create(
             name=_CLASSE_NAME,
-            phylum=self.phylum
-            )
+            phylum=self.phylum)
+        (self.family, created) = Family.objects.get_or_create(
+            name=_FAMILY_NAME,
+            classe=self.classe)
 
 class KingdomTest(CladesTest):
     def test_kingdom_name(self):
@@ -37,3 +39,8 @@ class ClasseTest(CladesTest):
     def test_classe_has_phylum(self):
         classe = Classe.objects.get(name=_CLASSE_NAME)
         self.assertEqual(classe.phylum, self.phylum)
+
+class FamilyTest(CladesTest):
+    def test_family_has_classe(self):
+        family = Family.objects.get(name=_FAMILY_NAME)
+        self.assertEqual(family.classe, self.classe)
