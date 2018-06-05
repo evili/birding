@@ -1,0 +1,6 @@
+build:
+  script:
+    - printenv
+    - setup_docker
+    - printenv
+    - build
