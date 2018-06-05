@@ -4,5 +4,6 @@ build:
   script:
     - printenv
     - set -x
-    - setup_docker
+    - which setup_docker
+    - $(which setup_docker)
     - build
