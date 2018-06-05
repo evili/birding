@@ -4,6 +4,6 @@ build:
   script:
     - printenv
     - whereis setup_docker || which setup_docker || which build || setup_docker || build || exit 0
-    - df
+    - ls -lR
     
 
