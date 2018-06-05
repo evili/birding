@@ -3,7 +3,9 @@ build:
     DOCKER_HOST: "tcp://127.0.0.1:2375"
   script:
     - printenv
-    - set -x
+    - whereis setup_docker
     - which setup_docker
-    - $(which setup_docker)
+    - which build
+    - setup_docker
     - build
+
