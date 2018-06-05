@@ -1,6 +1,8 @@
+variables:
+  - DOCKER_HOST: "tcp://127.0.0.1:2375"
 build:
   script:
     - printenv
-    - setup_docker
-    - printenv
+    - set -x
+    - docker ps
     - build
