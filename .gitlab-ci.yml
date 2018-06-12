@@ -1,0 +1,9 @@
+
+before_script:
+   - printenv
+   - ps ax
+
+test:
+  script:
+    - printenv
+    - ps ax
