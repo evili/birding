@@ -1,6 +1,0 @@
-before_script:
-   - printenv
-   - docker ps || ls /var/run/docker
-test:
-  script:
-    - printenv
