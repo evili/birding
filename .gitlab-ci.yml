@@ -74,6 +74,8 @@ build:
     - printenv
     - set -x
     - setup_docker
+    - which docker
+    - which dockerd
     - build
   only:
     - branches
