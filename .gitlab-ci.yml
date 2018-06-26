@@ -76,7 +76,7 @@ build:
     - which docker
     - which dockerd
     - ps ax
-    - wget -d -S https://gitlab.iri.upc.edu:4774/v2/
+    - wget -O /dev/null -S https://gitlab.iri.upc.edu:4774/v2/
     - /usr/local/bin/dockerd --help
     - build
   only:
