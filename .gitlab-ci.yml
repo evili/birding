@@ -72,10 +72,11 @@ build:
     DOCKER_DRIVER: overlay2
   script:
     - printenv
-    - set -x
     - setup_docker
     - which docker
     - which dockerd
+    - ps ax
+    - /usr/local/bin/dockerd
     - build
   only:
     - branches
