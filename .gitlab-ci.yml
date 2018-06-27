@@ -74,8 +74,9 @@ build:
   script:
     - printenv
     - set -x
+    - set -v
     - setup_docker
-    - export DOCKER_HOST=tcp://127.0.0.1:2375
+    - export DOCKER_HOST=tcp://::1:2375
     - set -v
     - build || echo "Built not Ok"
     - sleep 3600
