@@ -73,13 +73,9 @@ build:
     DOCKER_DRIVER: overlay2
   script:
     - printenv
-    - setup_docker
-    - which docker
-    - which dockerd
-    - ps ax
-    - wget -O /dev/null -S https://gitlab.iri.upc.edu:4774/v2/ || echo "Registry BAD"
-    - /usr/local/bin/dockerd --help  || echo "Dockerd did not start..."
     - set -x
+    - setup_docker
+    - export DOCKER_HOST=tcp://127.0.0.1:2375
     - set -v
     - build || echo "Built not Ok"
     - sleep 3600
