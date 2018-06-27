@@ -51,6 +51,7 @@ variables:
 
   KUBERNETES_VERSION: 1.8.6
   HELM_VERSION: 2.6.1
+  DOCKER_HOST: "tcp://localhost:2375"
 
 stages:
   - build
