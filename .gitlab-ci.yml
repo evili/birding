@@ -92,6 +92,8 @@ test:
   script:
     - setup_test_db
     - cp -R . /tmp/app
+    - /bin/herokuish paths
+    - ls -lR /tmp
     - /bin/herokuish buildpack test
   only:
     - branches
