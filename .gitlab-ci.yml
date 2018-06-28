@@ -77,8 +77,7 @@ build:
     - printenv
     - set -x
     - setup_docker
-    - build || echo "Built not Ok"
-    - sleep 300
+    - build || sleep 300
   only:
     - branches
 
@@ -94,7 +93,7 @@ test:
     - cp -R . /tmp/app
     - /bin/herokuish paths
     - ls -lR /tmp
-    - /bin/herokuish buildpack test
+    - /bin/herokuish buildpack test || sleep 300
   only:
     - branches
   except:
