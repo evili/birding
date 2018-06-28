@@ -38,4 +38,16 @@ if [ -f "$MANAGE_FILE" ] && [ "$DJANGO_INSTALLED" ]; then
 
     set -e
 
+    # Display a warning if test failed.
+    [ "$TEST_STATUS" -ne 0 ] && {
+        echo
+        echo " !     Error while running '$ python $MANAGE_FILE test'."
+        echo "       See traceback above for details."
+        echo
+
+	exit 1
+    }
+
+    echo
+
 fi
