@@ -77,7 +77,7 @@ build:
     - set -v
     - setup_docker
     - build || echo "Built not Ok"
-    - sleep 3600
+    - sleep 300
   only:
     - branches
 
