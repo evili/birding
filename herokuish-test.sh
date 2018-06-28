@@ -33,7 +33,7 @@ if [ -f "$MANAGE_FILE" ] && [ "$DJANGO_INSTALLED" ]; then
     # Create a temporary file for collecting the collectstaic logs.
     TEST_LOG=$(mktemp)
 
-    python "$MANAGE_FILE" test 2>&1 | tee "$TEST_LOG" | sed '/^Post-processed/d;/^Copying/d;/^$/d' | indent
+    python "$MANAGE_FILE" test 2>&1 | tee "$TEST_LOG"
     TEST_STATUS="${PIPESTATUS[0]}"
 
     set -e
