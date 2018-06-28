@@ -92,8 +92,8 @@ test:
     - setup_test_db
     - cp -R . /tmp/app
     - /bin/herokuish paths
-    - ls -lR /tmp
-    - /bin/herokuish buildpack test || sleep 300
+    - cp -pv ./test-herokuish.sh ${BUILDPACK_PATH}/04_buildpack_python/04_buildpack-python/bin/test
+    - /bin/herokuish buildpack test
   only:
     - branches
   except:
