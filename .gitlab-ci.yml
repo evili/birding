@@ -53,6 +53,7 @@ variables:
   HELM_VERSION: 2.6.1
   DOCKER_ENV_CI_REGISTRY: 10.83.76.14:4774
   CI_REGISTRY: 10.83.76.14:4774
+  TILLER_NAMESPACE: gitlab-managed-apps
 
 stages:
   - build
