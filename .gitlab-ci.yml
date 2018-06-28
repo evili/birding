@@ -92,7 +92,7 @@ test:
     - setup_test_db
     - cp -R . /tmp/app
     - /bin/herokuish paths
-    - cp -pv ./test-herokuish.sh /tmp/buildpacks/04_buildpack_python/04_buildpack-python/bin/test
+    - cp -pv ./test-herokuish.sh /tmp/buildpacks/04_buildpack-python/bin/test
     - /bin/herokuish buildpack test
   only:
     - branches
