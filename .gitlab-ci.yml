@@ -340,6 +340,8 @@ canary:
 .production: &production_template
   stage: production
   script:
+    - printenv
+    - set -x
     - check_kube_domain
     - install_dependencies
     - download_chart
