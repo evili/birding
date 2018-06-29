@@ -77,7 +77,7 @@ build:
     - printenv
     - set -x
     - setup_docker
-    - build
+    - build || sleep 300
   only:
     - branches
 
