@@ -77,7 +77,7 @@ build:
     - printenv
     - set -x
     - setup_docker
-    - build || sleep 300
+    - build
   only:
     - branches
 
@@ -86,6 +86,7 @@ test:
     - postgres:latest
   variables:
     POSTGRES_DB: test
+    DJANGO_SETTINGS_MODULE: ci
   stage: test
   image: gliderlabs/herokuish:latest
   script:
