@@ -1,0 +1,126 @@
+[
+{
+  "model": "clades.kingdom",
+  "fields": {
+    "name": "Animalia",
+    "notes": null
+  }
+},
+{
+  "model": "clades.phylum",
+  "fields": {
+    "name": "Chordata",
+    "notes": null,
+    "kingdom": [
+      "Animalia"
+    ]
+  }
+},
+{
+  "model": "clades.classe",
+  "fields": {
+    "name": "Aves",
+    "notes": null,
+    "phylum": [
+      "Chordata"
+    ]
+  }
+},
+{
+  "model": "clades.ordo",
+  "fields": {
+    "name": "Passeriformes",
+    "notes": null,
+    "classe": [
+      "Aves"
+    ]
+  }
+},
+{
+  "model": "clades.family",
+  "fields": {
+    "name": "Paridae",
+    "notes": null,
+    "ordo": [
+      "Passeriformes"
+    ]
+  }
+},
+{
+  "model": "clades.genus",
+  "fields": {
+    "name": "Periparus",
+    "notes": null,
+    "family": [
+      "Paridae"
+    ]
+  }
+},
+{
+  "model": "clades.locale",
+  "fields": {
+    "locale": "en"
+  }
+},
+{
+  "model": "clades.locale",
+  "fields": {
+    "locale": "ca"
+  }
+},
+{
+  "model": "clades.locale",
+  "fields": {
+    "locale": "es"
+  }
+},
+{
+  "model": "clades.species",
+  "fields": {
+    "name": "ater",
+    "notes": null,
+    "genus": [
+      "Periparus"
+    ]
+  }
+},
+{
+  "model": "clades.commonname",
+  "pk": 1,
+  "fields": {
+    "cname": "Mallerenga petita",
+    "species": [
+      "ater"
+    ],
+    "locale": [
+      "ca"
+    ]
+  }
+},
+{
+  "model": "clades.commonname",
+  "pk": 2,
+  "fields": {
+    "cname": "Coal Tit",
+    "species": [
+      "ater"
+    ],
+    "locale": [
+      "en"
+    ]
+  }
+},
+{
+  "model": "clades.commonname",
+  "pk": 3,
+  "fields": {
+    "cname": "Carbonero garrapinos",
+    "species": [
+      "ater"
+    ],
+    "locale": [
+      "es"
+    ]
+  }
+}
+]
