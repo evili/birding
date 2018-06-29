@@ -1,6 +1,9 @@
 import os
 from . import *
 
+STATIC_ROOT = '/tmp/static'
+
+
 #
 # POSTGRES_PORT should be named POSTGRES_URL (or similar)
 # Here we try to parse it and put (true) port and host

@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TransactionTestCase
 
 from .models import Kingdom, Phylum, Classe, Ordo, Family, Genus, Species, CommonName, Locale
 
@@ -14,7 +14,9 @@ _COMMON_NAME = {
     u'en': u'Coal Tit',
 }
 
-class CladesTest(TestCase):
+class CladesTest(TransactionTestCase):
+
+    fixtures = ['periparus_ater']
 
     def setUp(self):
         (self.kingdom, created) = Kingdom.objects.get_or_create(
@@ -40,7 +42,6 @@ class CladesTest(TestCase):
         self.locale = {}
         self.common_name = {}
         for lc, cn in _COMMON_NAME.items():
-            print("======================> LOCALE:", lc)
             (self.locale[lc], created) = Locale.objects.get_or_create(locale=lc)
             (self.common_name[lc], created) = CommonName.objects.get_or_create(
                 cname=cn,
@@ -94,8 +95,19 @@ class CommonNameTest(CladesTest):
     def test_common_name_no_local(self):
              from django.conf import settings
              # set default to a missing cn
-             settings.LANGUAGE_CODE = u'eo'
-             self.assertEqual(self.species,
-                              self.species.sci_name(),
-                              'Fallback common name is not scientific name ' % (str(self.species), self.species.sci_name() )
+             esperanto_st = u'eo'
+             settings.LANGUAGE_CODE = esperanto_st
+             from django.utils import translation
+             translation.activate(esperanto_st)
+             (esperanto, created) = Locale.objects.get_or_create(
+                  locale=esperanto_st)
+            
+             cn = str(self.species)
+             sn = self.species.sci_name()
+
+             self.assertEqual(
+                 cn,
+                 sn,
+                 'Fallback common name "%s" is not scientific name "%s"' % (
+                     cn, sn)
              )

@@ -3,13 +3,21 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import get_language
 
+class BaseNameManager(models.Manager):
+    def get_by_natural_key(self, name):
+        return self.get(name=name)
 
 class BaseName(models.Model):
+    objects = BaseNameManager()
+
     name = models.CharField(max_length=255, unique=True)
     notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+    def natural_key(self):
+        return (self.name,)
 
     class Meta:
         abstract = True
@@ -43,13 +51,16 @@ class Genus(BaseName):
 class LocaleManager(models.Manager):
     """Model Manger for available Locales"""
 
+    def get_by_natural_key(self, locale):
+        return self.get(locale=locale)
+
     @staticmethod
     def enabled_locales():
         """Work with enabled languages only."""
-        return settings.LANGUAGES
+        return list(zip(*settings.LANGUAGES))[0]
 
     def get_queryset(self):
-        return super(LocaleManager, self).get_queryset().filter(
+        return super().get_queryset().filter(
                 locale__in=self.enabled_locales())
 
 
@@ -59,6 +70,10 @@ class Locale(models.Model):
                               choices=global_settings.LANGUAGES,
                               unique=True)
     objects = LocaleManager()
+    
+    def natural_key(self):
+        return (self.locale,)
+
 
 class Species(BaseName):
     """Species s one of the basic units of biological classification and a
@@ -85,18 +100,19 @@ class Species(BaseName):
             loc = get_language()
         except:
             loc = settings.LANGUAGE_CODE
+
         try:
             lang = Locale.objects.get(locale=loc)
         except:
-            loc = loc.replace('-', '_').split('_')[0]
+            try:
+                loc = loc.replace('-', '_').split('_')[0]
+            except:
+                pass
 
         try:
             lang = Locale.objects.get(locale=loc)
         except:
             lang, created = Locale.objects.get_or_create(locale='en')
-            if(created):
-                lang.save()
-
         try:
             cn = self.commonname_set.get(locale=lang).cname
         except:
