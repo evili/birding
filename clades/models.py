@@ -39,13 +39,14 @@ class Family(BaseName):
 class Genus(BaseName):
     family = models.ForeignKey(Family)
 
+
 class LocaleManager(models.Manager):
     """Model Manger for available Locales"""
 
     @staticmethod
     def enabled_locales():
         """Work with enabled languages only."""
-        return zip(*settings.LANGUAGES)[0]
+        return settings.LANGUAGES
 
     def get_queryset(self):
         return super(LocaleManager, self).get_queryset().filter(

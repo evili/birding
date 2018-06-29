@@ -91,6 +91,9 @@ test:
   stage: test
   image: gliderlabs/herokuish:latest
   script:
+    - printenv
+    - alias
+    - set -x
     - setup_test_db
     - cp -R . /tmp/app
     - /bin/herokuish paths
