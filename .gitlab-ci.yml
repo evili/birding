@@ -110,10 +110,13 @@ code_quality:
   image: docker:stable
   variables:
     DOCKER_DRIVER: overlay2
+    CODECLIMATE_DEBUG: 1
   allow_failure: true
   services:
     - docker:stable-dind
   script:
+    - printenv
+    - set -x
     - setup_docker
     - code_quality
   artifacts:
