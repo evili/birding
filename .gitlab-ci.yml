@@ -72,7 +72,7 @@ build:
   services:
   - docker:stable-dind
   variables:
-    DOCKER_DRIVER: btrfs
+    DOCKER_DRIVER: overlay2
   script:
     - printenv
     - set -x
