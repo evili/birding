@@ -83,7 +83,6 @@ test:
   stage: test
   image: gliderlabs/herokuish:latest
   script:
-    - printenv
     - setup_test_db
     - cp -R . /tmp/app
     - /bin/herokuish buildpack test
@@ -819,4 +818,5 @@ rollout 100%:
   }
 
 before_script:
+  - printenv
   - *auto_devops
