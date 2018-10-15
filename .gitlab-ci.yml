@@ -71,6 +71,7 @@ build:
   - docker:stable-dind
   script:
     - setup_docker
+    - printenv
     - build
   only:
     - branches
@@ -818,5 +819,4 @@ rollout 100%:
   }
 
 before_script:
-  - printenv
   - *auto_devops
