@@ -86,6 +86,7 @@ test:
   script:
     - setup_test_db
     - cp -R . /tmp/app
+    - cp -pavi ./herokuish-test.sh /tmp/buildpacks/04-buildpack-python/bin/test
     - /bin/herokuish buildpack test
   only:
     - branches
