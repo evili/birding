@@ -135,4 +135,7 @@ import django_heroku
 django_heroku.settings(locals())
 # REMOVE SSL FOR TESTING
 if DEBUG:
-	DATABASES['default']['OPTIONS']['sslmode'] = 'prefer'
+        try:
+	        DATABASES['default']['OPTIONS']['sslmode'] = 'prefer'
+        except Error:
+                pass
