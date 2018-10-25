@@ -137,5 +137,5 @@ django_heroku.settings(locals())
 if DEBUG:
         try:
 	        DATABASES['default']['OPTIONS']['sslmode'] = 'prefer'
-        except Error:
+        except Exception:
                 pass
