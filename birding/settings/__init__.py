@@ -133,3 +133,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 import django_heroku
 
 django_heroku.settings(locals())
+# REMOVE SSL FOR TESTING
+if DEBUG:
+	DATABASES['default']['OPTIONS']['sslmode'] = 'prefer'
