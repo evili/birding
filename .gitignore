@@ -92,3 +92,7 @@ ENV/
 
 # django debug database
 db.sqlite3
+
+# django static root on BASE_DIR
+/static
+/staticfiles
