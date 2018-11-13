@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic.base import TemplateView
+from .views import HealthView
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+    url(r'^health/$', HealthView.as_view(), name='health'),
     url(r'^admin/', admin.site.urls),
     url('^', include('django.contrib.auth.urls')),
 ]
