@@ -17,9 +17,9 @@ class BasicUrlsTest(unittest.TestCase):
         resp = self.visit_view('login')
         self.assertEqual(200, resp.status_code, "No login page")
 
-    def test_logout(self):
-        resp = self.visit_view('logout')
-        self.assertEqual(200, resp.status_code, "No logout page")
+    # def test_logout(self):
+    #    resp = self.visit_view('logout')
+    #    self.assertEqual(200, resp.status_code, "No logout page")
 
     # def test_password_change(self):
     #     resp = self.visit_view('password_change')
