@@ -3,3 +3,4 @@ django-bootstrap3
 psycopg2-binary
 django-heroku
 whitenoise[brotli]
+gunicorn
