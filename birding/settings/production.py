@@ -1,1 +1,3 @@
 from . import *
+
+DEBUG = False
