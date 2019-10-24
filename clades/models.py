@@ -29,23 +29,23 @@ class Kingdom(BaseName):
 
 
 class Phylum(BaseName):
-    kingdom = models.ForeignKey(Kingdom)
+    kingdom = models.ForeignKey(Kingdom, on_delete=models.PROTECT)
 
 
 class Classe(BaseName):
-    phylum = models.ForeignKey(Phylum)
+    phylum = models.ForeignKey(Phylum, on_delete=models.PROTECT)
 
 
 class Ordo(BaseName):
-    classe = models.ForeignKey(Classe)
+    classe = models.ForeignKey(Classe, on_delete=models.PROTECT)
 
 
 class Family(BaseName):
-    ordo = models.ForeignKey(Ordo)
+    ordo = models.ForeignKey(Ordo, on_delete=models.PROTECT)
 
 
 class Genus(BaseName):
-    family = models.ForeignKey(Family)
+    family = models.ForeignKey(Family, on_delete=models.PROTECT)
 
 
 class LocaleManager(models.Manager):
@@ -80,7 +80,7 @@ class Species(BaseName):
     taxonomic rank. A species is often defined as a group of organisms capable
     of interbreeding and producing fertile offspring.
     """
-    genus = models.ForeignKey(Genus)
+    genus = models.ForeignKey(Genus, on_delete=models.PROTECT)
 
     def sci_name(self):
 
@@ -135,8 +135,8 @@ class CommonName(models.Model):
     """
 
     cname = models.CharField(max_length=127)
-    species = models.ForeignKey(Species)
-    locale = models.ForeignKey(Locale)
+    species = models.ForeignKey(Species, on_delete=models.PROTECT)
+    locale = models.ForeignKey(Locale, on_delete=models.PROTECT)
 
     def __unicode__(self):
         return u'{0} ({1})'.format(self.cname, self.species.sci_name())
