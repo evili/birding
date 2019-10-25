@@ -13,4 +13,7 @@ build:
         export CI_APPLICATION_TAG=${CI_APPLICATION_TAG:-$CI_COMMIT_TAG}
       fi
     - netstat -r -n
+    - cat /etc/resolv.conf
+    - nslookup www.google.com
+    - wget -O /tmp/index.html https://www.google.cat
     - sh -x /build/build.sh
