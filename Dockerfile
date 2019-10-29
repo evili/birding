@@ -2,12 +2,10 @@ FROM python:3.7-alpine
 
 ARG dev_packages="gcc g++ libc-dev libxml2-dev libxslt-dev postgresql-dev openldap-dev"
 
-RUN mkdir -pv /app
+COPY . /app
 WORKDIR /app
 
 RUN pip install --upgrade pip
-
-COPY requirements.txt .
 
 RUN apk update && \
     apk add bash \
