@@ -1,1 +1,1 @@
-web: gunicorn birding.wsgi
+web: gunicorn --bind 0.0.0.0:5000 birding.wsgi
