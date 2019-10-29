@@ -2,7 +2,6 @@ FROM python:3.7-alpine
 
 ARG dev_packages="gcc g++ libc-dev libxml2-dev libxslt-dev postgresql-dev openldap-dev"
 
-
 RUN mkdir -pv /app
 WORKDIR /app
 
@@ -19,7 +18,6 @@ RUN apk update && \
     pip install -r requirements.txt && \
     apk del ${dev_packages} && \
     rm -fr /root/.cache
-
 
 ENV DJANGO_STATIC_ROOT=/static
 ENV DJANGO_MEDIA_ROOT=/media
