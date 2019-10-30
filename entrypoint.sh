@@ -6,5 +6,7 @@ python manage.py collectstatic --no-input
 python manage.py migrate
 LOG_LEVEL=${LOG_LEVEL:-INFO}
 
+printenv
+
 /usr/local/bin/gunicorn --bind 0.0.0.0:5000 --log-level=${LOG_LEVEL} \
 			${DJANGO_WSGI} $*
