@@ -1,6 +1,6 @@
-[![build status](https://gitlab.iiia.csic.es/evili/birding/badges/master/pipeline.svg)](https://gitlab.iiia.csic.es/evili/birding/commits/master)
+[![build](https://gitlab.iiia.csic.es/evili/birding/badges/master/pipeline.svg)](https://gitlab.iiia.csic.es/evili/birding/commits/master)
 
-[![coverage report](https://gitlab.iiia.csic.es/evili/birding/badges/master/coverage.svg)](https://gitlab.iiia.csic.es/evili/birding/commits/master)
+[![coverage](https://gitlab.iiia.csic.es/evili/birding/badges/master/coverage.svg)](https://gitlab.iiia.csic.es/evili/birding/commits/master)
 
 # Birding Django App
 
