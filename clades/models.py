@@ -96,23 +96,17 @@ class Species(BaseName):
         """
         cn = self.sci_name()
 
-        try:
-            loc = get_language()
-        except:
-            loc = settings.LANGUAGE_CODE
+        loc = get_language()
 
         try:
             lang = Locale.objects.get(locale=loc)
         except:
+            loc = loc.replace('-', '_').split('_')[0]
             try:
-                loc = loc.replace('-', '_').split('_')[0]
+                lang = Locale.objects.get(locale=loc)
             except:
-                pass
+                lang, created = Locale.objects.get_or_create(locale='en')
 
-        try:
-            lang = Locale.objects.get(locale=loc)
-        except:
-            lang, created = Locale.objects.get_or_create(locale='en')
         try:
             cn = self.commonname_set.get(locale=lang).cname
         except:
@@ -120,8 +114,6 @@ class Species(BaseName):
 
         return cn
 
-    def __unicode__(self):
-            return self.__str__()
 
     class Meta:
         ordering = ['genus', 'name']
@@ -138,7 +130,7 @@ class CommonName(models.Model):
     species = models.ForeignKey(Species, on_delete=models.PROTECT)
     locale = models.ForeignKey(Locale, on_delete=models.PROTECT)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'{0} ({1})'.format(self.cname, self.species.sci_name())
 
     class Meta:

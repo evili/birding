@@ -1,4 +1,5 @@
 from django.test import TransactionTestCase
+from django.utils import translation
 
 from .models import Kingdom, Phylum, Classe, Ordo, Family, Genus, Species, CommonName, Locale
 
@@ -111,3 +112,41 @@ class CommonNameTest(CladesTest):
                  'Fallback common name "%s" is not scientific name "%s"' % (
                      cn, sn)
              )
+
+    def test_common_name_no_variant(self):
+            from django.conf import settings
+            cat_ad = u'ca_AD'
+            settings.LANGUAGE_CODE = cat_ad
+            from django.utils import translation
+            translation.activate(cat_ad)
+            cn = str(self.species)
+            cat_name = self.common_name['ca'].cname
+            self.assertEqual(cn, cat_name,
+                              '%s should be named %s' % (cn, cat_name))
+    
+    def test_common_name_unknown_locale(self):
+        from django.conf import settings
+        # set default to a missing cn
+        esperanto_st = u'eo'
+        settings.LANGUAGE_CODE = esperanto_st
+        from django.utils import translation
+        translation.activate(esperanto_st)
+        
+        cn = str(self.species)
+        
+        translation.activate(u'en')
+        en = str(self.species)
+
+        self.assertEqual(
+            cn,
+            en,
+            'Fallback common name "%s" is not english name "%s"' % (
+                cn, en)
+        )
+
+    def test_common_name_string(self):
+        st_cn = str(CommonName.objects.get(species=self.species, locale=Locale.objects.get(locale='ca')))
+        ca_cn = '%s (%s)' % (self.common_name['ca'].cname, self.species.sci_name())
+        self.assertEquals(st_cn, ca_cn, 'Common name string should be "%s", not "%s"' % (st_cn, ca_cn))
+
+        
