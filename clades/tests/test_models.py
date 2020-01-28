@@ -1,7 +1,7 @@
 from django.test import TransactionTestCase
 from django.utils import translation
 
-from .models import Kingdom, Phylum, Classe, Ordo, Family, Genus, Species, CommonName, Locale
+from clades.models import Kingdom, Phylum, Classe, Ordo, Family, Genus, Species, CommonName, Locale
 
 _KINGDOM_NAME = u'Animalia'
 _PHYLUM_NAME = u'Chordata'
@@ -17,7 +17,7 @@ _COMMON_NAME = {
 
 class CladesTest(TransactionTestCase):
 
-    fixtures = ['periparus_ater']
+    fixtures = ['periparus']
 
     def setUp(self):
         (self.kingdom, created) = Kingdom.objects.get_or_create(

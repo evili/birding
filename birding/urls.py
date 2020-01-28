@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^health/$', HealthView.as_view(), name='health'),
     url(r'^admin/', admin.site.urls),
+    url(r'^clades/', include('clades.urls')),
     url('^', include('django.contrib.auth.urls')),
 ]

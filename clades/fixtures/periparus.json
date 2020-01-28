@@ -85,8 +85,27 @@
   }
 },
 {
+  "model": "clades.species",
+  "fields": {
+    "name": "rufonuchalis",
+    "notes": null,
+    "genus": [
+      "Periparus"
+    ]
+  }
+},
+{
+  "model": "clades.species",
+  "fields": {
+    "name": "rubidiventris",
+    "notes": null,
+    "genus": [
+      "Periparus"
+    ]
+  }
+},
+{
   "model": "clades.commonname",
-  "pk": 1,
   "fields": {
     "cname": "Mallerenga petita",
     "species": [
@@ -99,7 +118,6 @@
 },
 {
   "model": "clades.commonname",
-  "pk": 2,
   "fields": {
     "cname": "Coal Tit",
     "species": [
@@ -112,7 +130,6 @@
 },
 {
   "model": "clades.commonname",
-  "pk": 3,
   "fields": {
     "cname": "Carbonero garrapinos",
     "species": [
@@ -120,6 +137,30 @@
     ],
     "locale": [
       "es"
+    ]
+  }
+},
+{
+  "model": "clades.commonname",
+  "fields": {
+    "cname": "Rufous-naped tit",
+    "species": [
+      "rufonuchalis"
+    ],
+    "locale": [
+      "en"
+    ]
+  }
+},
+{
+  "model": "clades.commonname",
+  "fields": {
+    "cname": "Rufous-vented tit",
+    "species": [
+      "rubidiventris"
+    ],
+    "locale": [
+      "en"
     ]
   }
 }

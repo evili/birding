@@ -1,0 +1,13 @@
+{% extends "clades/base.html" %}{% load i18n %}
+{% block content %}
+<p>Clades Search Page</p>
+
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+</form>
+
+{% for  obj in search_results %}
+<p><a href="{{obj.get_absolute_url}}">{{ obj }}</a></p>
+{% endfor %}
+
+{% endblock content %}
