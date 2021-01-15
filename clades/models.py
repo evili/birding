@@ -2,6 +2,8 @@ from django.conf import global_settings
 from django.conf import settings
 from django.db import models
 from django.utils.translation import get_language
+from django.core.exceptions import ObjectDoesNotExist
+
 
 class BaseNameManager(models.Manager):
     def get_by_natural_key(self, name):
@@ -100,16 +102,16 @@ class Species(BaseName):
 
         try:
             lang = Locale.objects.get(locale=loc)
-        except:
+        except ObjectDoesNotExist:
             loc = loc.replace('-', '_').split('_')[0]
             try:
                 lang = Locale.objects.get(locale=loc)
-            except:
+            except ObjectDoesNotExist:
                 lang, created = Locale.objects.get_or_create(locale='en')
 
         try:
             cn = self.commonname_set.get(locale=lang).cname
-        except:
+        except ObjectDoesNotExist:
             pass
 
         return cn
