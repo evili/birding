@@ -5,3 +5,5 @@ omit =
     */env*/*
     /usr/*
    */site-packages/*
+   # omit pytest
+   */pytest
