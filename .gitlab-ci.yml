@@ -16,6 +16,8 @@ django-test:
   script:
     - pip install pytest
     - pip install coverage
+    - pip install -r requirements.txt
+    - pip install -r requirements-test.txt || echo "No specific test requirements.txt"
     - coverage run $(which pytest) --junit-xml=junit.xml
     - coverage xml
 
