@@ -1,6 +1,7 @@
 Django<2.3; python_version >='3.0'
 django-bootstrap4
-psycopg2-binary
+psycopg2
+#-binary
 django-heroku
 whitenoise[brotli]
 gunicorn
