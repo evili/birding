@@ -14,6 +14,7 @@ django-test:
   stage: test
   image: python:alpine
   script:
+    - apk gcc libc-dev postgresql-dev
     - pip install pytest
     - pip install coverage
     - pip install -r requirements.txt
