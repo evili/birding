@@ -12,7 +12,7 @@ cache:
 
 django-test:
   stage: test
-  image: gitlab.iiia.csic.es:5005/evili/django-docker:latest
+  image: python:alpine
   script:
     - pip install pytest
     - pip install coverage
