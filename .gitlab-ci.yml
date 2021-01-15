@@ -21,6 +21,7 @@ django-test:
     - pip install -r requirements-test.txt || echo "No specific test requirements.txt"
     - coverage run $(which pytest) --junit-xml=junit.xml
     - coverage xml
+    - coverage report
 
 sonarqube-check:
   stage: quality

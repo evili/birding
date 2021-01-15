@@ -17,6 +17,9 @@
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
 <table>
+<caption>Login Form</caption>
+<tr>
+	<th colspan="2">Login</th></tr>
 <tr>
     <td>{{ form.username.label_tag }}</td>
     <td>{{ form.username }}</td>
