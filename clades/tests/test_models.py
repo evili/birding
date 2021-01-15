@@ -147,6 +147,6 @@ class CommonNameTest(CladesTest):
     def test_common_name_string(self):
         st_cn = str(CommonName.objects.get(species=self.species, locale=Locale.objects.get(locale='ca')))
         ca_cn = '%s (%s)' % (self.common_name['ca'].cname, self.species.sci_name())
-        self.assertEquals(st_cn, ca_cn, 'Common name string should be "%s", not "%s"' % (st_cn, ca_cn))
+        self.assertEqual(st_cn, ca_cn, 'Common name string should be "%s", not "%s"' % (st_cn, ca_cn))
 
         
