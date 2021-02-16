@@ -139,3 +139,20 @@ if DEBUG:
 	        DATABASES['default']['OPTIONS']['sslmode'] = 'prefer'
         except Exception:
                 pass
+
+#
+# Sentry
+#
+if DEBUG:
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+
+    sentry_sdk.init(
+        dsn="https://7244efb2c97c46a5b22f6b78a7135ba5@o522085.ingest.sentry.io/5634937",
+        integrations=[DjangoIntegration()],
+        traces_sample_rate=1.0,
+
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+    )

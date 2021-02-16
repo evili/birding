@@ -3,8 +3,8 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import FormMixin
 from django.urls import reverse_lazy
 
-from .forms import CladesSearchForm
-from .models import Species
+from . import forms
+from . import models
 
 class CladesHomeView(TemplateView):
     template_name = 'clades/home.html'
@@ -12,7 +12,7 @@ class CladesHomeView(TemplateView):
 
 class CladesSearchView(FormMixin, TemplateView):
     template_name = 'clades/search.html'
-    form_class = CladesSearchForm
+    form_class = forms.CladesSearchForm
     success_url = reverse_lazy('clades-search')
 
     def post(self, request, *args, **kwargs):
@@ -29,10 +29,10 @@ class CladesSearchView(FormMixin, TemplateView):
     
         for si in search_items:
             obj_list.extend(
-                Species.objects.filter(
+                models.Species.objects.filter(
                     name__icontains=si).distinct().order_by('pk'))
             obj_list.extend(
-                Species.objects.filter(
+                models.Species.objects.filter(
                     genus__name__icontains=si).distinct().order_by('pk')
             )
 
