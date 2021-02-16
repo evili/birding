@@ -9,6 +9,7 @@ include:
   image: registry.gitlab.com/gitlab-org/cluster-integration/auto-deploy-image:v1.1.0
 
 pages:
+  image: python:alpine
   stage: deploy
   needs: ["test"]
   script:
