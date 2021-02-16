@@ -1,40 +1,18 @@
-stages:
-  - build
-  - test
-  - quality
-  - deploy
-
 cache:
-  key: "$CI_COMMIT_REF_SLUG"
   paths:
-    - junit.xml
-    - coverage.xml
-    - .sonar/cache
+    - .coverage
 
-django-test:
-  stage: test
-  image: python
+include:
+  - template: Auto-DevOps.gitlab-ci.yml
+
+.auto-deploy:
+  image: registry.gitlab.com/gitlab-org/cluster-integration/auto-deploy-image:v1.1.0
+
+pages:
+  stage: deploy
   script:
-    - pip install pytest-django
     - pip install coverage
-    - pip install -r requirements.txt
-    - pip install -r requirements-test.txt || echo "No specific test requirements.txt"
-    - coverage run $(which pytest) --junit-xml=junit.xml
-    - coverage xml
-    - coverage report
-
-sonarqube-check:
-  stage: quality
-  image:
-    name: sonarsource/sonar-scanner-cli:latest
-    entrypoint: [""]
-  variables:
-    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
-    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
-  script:
-    - sonar-scanner
-  allow_failure: true
-  only:
-    - merge_requests
-    - master
-    - develop
+    - coverage html --dir=public
+  artifacts:
+    paths:
+      - public
