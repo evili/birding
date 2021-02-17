@@ -13,12 +13,13 @@ pages:
   stage: deploy
   needs: ["test"]
   script:
+    - df -h
     - pip install coverage
-    - cd /app
+    - cd /cache
     - ls -1A
     - coverage html -d public
     - cd ${OLDPWD}
-    - mv /app/public .
+    - mv /cache/public .
   artifacts:
     paths:
       - public
