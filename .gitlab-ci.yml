@@ -1,6 +1,6 @@
 cache:
   paths:
-    - .coverage
+    - /app/.coverage
 
 include:
   - template: Auto-DevOps.gitlab-ci.yml
@@ -9,15 +9,16 @@ include:
   image: registry.gitlab.com/gitlab-org/cluster-integration/auto-deploy-image:v1.1.0
 
 pages:
-  image: alpine:latest
+  image: python:alpine
   stage: deploy
   needs: ["test"]
   script:
-    - printenv
-    - pwd
-    - df -h
-    - ls
-    - ls -lR public
+    - pip install coverage
+    - cd /app
+    - ls -1A
+    - coverage html -d public
+    - cd ${OLDPWD}
+    - mv /app/public .
   artifacts:
     paths:
       - public
