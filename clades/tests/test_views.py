@@ -19,6 +19,11 @@ class CladesViewsTest(TestCase):
                                     {'search' :'ater'},
                                     follow=True)
 
-        
         self.assertIn(b'Coal', response.content, 'Species name not found')
 
+    def test_no_search(self):
+        response = self.client.post(reverse_lazy('clades-search'),
+                                    {'search' : ''},
+                                    follow=True)
+        self.assertIn(b'<ul class="errorlist">', response.content,
+                      'Invalid form data not detected')
