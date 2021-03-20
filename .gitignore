@@ -8,7 +8,8 @@ __pycache__/
 
 # C extensions
 *.so
-
+# Coverage reports
+public_html/
 # Distribution / packaging
 .Python
 env/
