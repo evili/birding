@@ -9,6 +9,7 @@ class BaseNameManager(models.Manager):
     def get_by_natural_key(self, name):
         return self.get(name=name)
 
+
 class BaseName(models.Model):
     objects = BaseNameManager()
 
@@ -68,11 +69,11 @@ class LocaleManager(models.Manager):
 
 class Locale(models.Model):
     """Locale are the language code for the Species Common Names"""
-    locale = models.CharField(max_length=15, 
+    locale = models.CharField(max_length=15,
                               choices=global_settings.LANGUAGES,
                               unique=True)
     objects = LocaleManager()
-    
+
     def natural_key(self):
         return (self.locale,)
 
@@ -115,7 +116,6 @@ class Species(BaseName):
             pass
 
         return cn
-
 
     class Meta:
         ordering = ['genus', 'name']

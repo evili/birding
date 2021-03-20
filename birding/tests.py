@@ -1,7 +1,8 @@
 import unittest
 from django.test import Client
 from django.urls import reverse
-    
+
+
 class BasicUrlsTest(unittest.TestCase):
     def setUp(self):
         self.client = Client()

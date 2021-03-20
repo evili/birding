@@ -1,10 +1,10 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormMixin
 from django.urls import reverse_lazy
 
 from . import forms
 from . import models
+
 
 class CladesHomeView(TemplateView):
     template_name = 'clades/home.html'
@@ -22,11 +22,10 @@ class CladesSearchView(FormMixin, TemplateView):
         else:
             return self.form_invalid(form)
 
-
     def form_valid(self, form):
         search_items = form.cleaned_data['search'].lower().split(' ')
-        obj_list  = []
-    
+        obj_list = []
+
         for si in search_items:
             obj_list.extend(
                 models.Species.objects.filter(
@@ -36,11 +35,11 @@ class CladesSearchView(FormMixin, TemplateView):
                     genus__name__icontains=si).distinct().order_by('pk')
             )
 
-        kwargs= {}
+        kwargs = {}
         context = self.get_context_data(**kwargs)
         context['search_results'] = obj_list
-        
-        response =  self.render_to_response(context, **kwargs)
+
+        response = self.render_to_response(context, **kwargs)
         return response
 
     form_valid.alters_data = True
