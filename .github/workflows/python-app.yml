@@ -35,5 +35,5 @@ jobs:
     - name: Test with pytest
       run: |
         coverage run manage.py test
-        #coverage report
-        #coverage html -d public
+        coverage report
+        coverage html -d public_html
