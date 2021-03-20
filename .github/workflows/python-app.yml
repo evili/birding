@@ -37,3 +37,12 @@ jobs:
         coverage run manage.py test
         coverage report
         coverage html -d docs 
+    - name: Publish test coverage report
+      uses: EndBug/add-and-commit@v4
+      with:
+        add: docs
+        force: true
+        message: Add generated docs
+      env:
+        GITHUB_TOKEN: $
+
